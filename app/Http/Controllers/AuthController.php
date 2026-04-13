@@ -34,11 +34,21 @@ class AuthController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users',
+            'email' => [
+                'required',
+                'email',
+                'unique:users',
+                function ($attribute, $value, $fail) {
+                    $domain = substr(strrchr($value, "@"), 1);
+                    if (!checkdnsrr($domain, "MX")) {
+                        $fail("The $attribute domain does not have valid mail records.");
+                    }
+                }
+            ],
             'password' => 'required|confirmed|min:8',
         ]);
 
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),

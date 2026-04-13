@@ -135,12 +135,18 @@
     }
 
     .back-section {
-        margin-top: 20px;
-        text-align: center;
+        text-align: left;
+        margin-bottom: 10px;
+        margin-left:50px;
+        background: rgb(0, 126, 119);
+        padding: 10px 16px;
+        border-radius: 6px;
+        width: 100px;
+
     }
 
     .back-link {
-        color: var(--primary);
+        color: #ffffff;
         text-decoration: none;
         font-size: 13px;
         font-weight: 500;
@@ -255,6 +261,10 @@
         </div>
     </div>
 
+    <div class="back-section">
+        <a href="#" onclick="window.history.back(); return false;" class="back-link">← Back</a>
+    </div>
+
     <div class="calculator">
 
         <!-- DISPLAY -->
@@ -290,10 +300,6 @@
             <button class="calc-btn" onclick="appendNumber('.')">.</button>
 
         </div>
-    </div>
-
-    <div class="back-section">
-        <a href="/tasks" class="back-link">← Kembali ke Tugas</a>
     </div>
 </div>
 
