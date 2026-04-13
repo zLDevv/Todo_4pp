@@ -1,4 +1,98 @@
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+<style>
+    .invitation-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 20px;
+    }
+
+    .invitation-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 12px;
+        border-left: 4px solid #17a2b8;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-header {
+        background: linear-gradient(135deg, rgba(23, 162, 184, 0.1) 0%, rgba(15, 125, 143, 0.1) 100%);
+        padding: 20px;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .card-actions {
+        padding: 0 20px 20px 20px;
+        display: flex;
+        gap: 10px;
+    }
+
+    .card-actions a {
+        flex: 1;
+        padding: 12px;
+        text-decoration: none;
+        text-align: center;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        border-radius: 8px;
+    }
+
+    @media (max-width: 768px) {
+        .invitation-grid {
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .card-header {
+            padding: 16px;
+        }
+
+        .card-header h3 {
+            font-size: 16px !important;
+        }
+
+        .card-body {
+            padding: 16px;
+        }
+
+        .card-actions {
+            padding: 0 16px 16px 16px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .card-header {
+            padding: 12px;
+        }
+
+        .card-header h3 {
+            font-size: 14px !important;
+            margin-bottom: 6px !important;
+        }
+
+        .card-body {
+            padding: 12px;
+        }
+
+        .card-body p {
+            font-size: 12px !important;
+        }
+
+        .card-actions {
+            padding: 0 12px 12px 12px;
+            flex-direction: column;
+        }
+
+        .card-actions a {
+            width: 100%;
+            padding: 10px !important;
+            font-size: 12px !important;
+        }
+    }
+</style>
 <script src="{{ asset('js/theme.js') }}"></script>
 
 @if(session('success'))
@@ -46,11 +140,11 @@
             <p style="color: rgba(255, 255, 255, 0.5); margin: 8px 0; font-size: 13px;">You're all caught up!</p>
         </div>
     @else
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
+        <div class="invitation-grid">
             @foreach ($invitations as $invitation)
-                <div style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; border-left: 4px solid #17a2b8; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);">
+                <div class="invitation-card">
                     <!-- Card Header -->
-                    <div style="background: linear-gradient(135deg, rgba(23, 162, 184, 0.1) 0%, rgba(15, 125, 143, 0.1) 100%); padding: 20px;">
+                    <div class="card-header">
                         <h3 style="margin: 0 0 8px 0; color: #17a2b8; font-size: 18px; font-weight: 700;">🤝 {{ $invitation->team->name }}</h3>
                         @if ($invitation->team->description)
                             <p style="font-size: 13px; color: #666; margin: 8px 0 0 0;">{{ $invitation->team->description }}</p>
@@ -58,7 +152,7 @@
                     </div>
 
                     <!-- Card Body -->
-                    <div style="padding: 20px;">
+                    <div class="card-body">
                         <div style="background: #f3f4f6; padding: 12px; border-radius: 8px; margin-bottom: 16px;">
                             <p style="color: #666; font-size: 12px; margin: 0 0 6px 0; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">👤 Invited by</p>
                             <p style="color: #333; font-size: 14px; font-weight: 600; margin: 0;">{{ $invitation->team->owner->name ?? 'Unknown' }}</p>
@@ -68,10 +162,9 @@
                     </div>
 
                     <!-- Card Actions -->
-                    <div style="padding: 0 20px 20px 20px; display: flex; gap: 10px;">
-                        <a href="/team-invitations/{{ $invitation->token }}/accept" class="btn btn-done" style="flex: 1; padding: 12px; text-decoration: none; text-align: center; font-weight: 600; border: none; cursor: pointer;">✅ Accept</a>
-                        
-                        <a href="/team-invitations/{{ $invitation->token }}/decline" class="btn btn-delete" style="flex: 1; padding: 12px; background: #ef4444; text-decoration: none; text-align: center; font-weight: 600; border: none; cursor: pointer;">❌ Decline</a>
+                    <div class="card-actions">
+                        <a href="/team-invitations/{{ $invitation->token }}/accept" class="btn btn-done" style="background: #10b981; color: white;">✅ Accept</a>
+                        <a href="/team-invitations/{{ $invitation->token }}/decline" class="btn btn-delete" style="background: #ef4444; color: white;">❌ Decline</a>
                     </div>
                 </div>
             @endforeach

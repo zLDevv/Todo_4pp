@@ -163,7 +163,76 @@
         .error-list li {
             margin: 4px 0;
         }
-    </style>
+
+        /* Responsive Styles */
+        @media (max-width: 480px) {
+            .login-card {
+                padding: 20px;
+                border-radius: 12px;
+            }
+
+            .login-card h1 {
+                font-size: 22px;
+                margin-bottom: 8px;
+            }
+
+            .login-card p {
+                font-size: 12px;
+                margin-bottom: 20px;
+            }
+
+            .form-group label {
+                font-size: 12px;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="password"] {
+                padding: 10px 12px;
+                font-size: 16px;
+            }
+
+            .login-btn {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+
+            .error-message,
+            .error-list {
+                padding: 10px 12px;
+                font-size: 12px;
+            }
+
+            .signup-link {
+                font-size: 12px;
+                margin-top: 16px;
+            }
+
+            .logo {
+                font-size: 28px;
+                margin-bottom: 16px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .login-card {
+                padding: 16px;
+            }
+
+            .login-card h1 {
+                font-size: 18px;
+            }
+
+            .login-card p {
+                font-size: 11px;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="password"] {
+                font-size: 15px;
+            }
+        }
 </head>
 <body>
 

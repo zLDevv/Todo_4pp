@@ -1,4 +1,35 @@
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+<style>
+    .form-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .back-link {
+        display: inline-block;
+        margin-bottom: 30px;
+    }
+
+    @media (max-width: 768px) {
+        .form-card {
+            padding: 20px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .form-card {
+            padding: 16px;
+            border-radius: 10px;
+        }
+
+        form button {
+            padding: 12px !important;
+            font-size: 14px !important;
+        }
+    }
+</style>>
 
 <div class="container">
     <div class="dashboard-header">
@@ -16,7 +47,7 @@
     </div>
 
     <div style="margin-bottom: 30px;">
-        <a href="/teams" class="btn" style="background: #6b7280; text-decoration: none;">← Back</a>
+        <a href="/teams" class="btn" style="background: #6b7280; text-decoration: none; padding: 10px 16px;">← Back</a>
     </div>
 
     <form action="/teams" method="POST" style="margin-top: 30px;">

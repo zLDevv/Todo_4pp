@@ -1,13 +1,244 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator - Task Manager</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <script src="{{ asset('js/theme.js') }}"></script>
-</head>
-<body>
+<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+<style>
+    .calculator {
+        max-width: 600px;
+        margin: 0 auto;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+        border-radius: 14px;
+        padding: 24px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html.dark-mode .calculator {
+        background: linear-gradient(135deg, rgba(42, 42, 42, 0.9), rgba(30, 30, 30, 0.9));
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .calc-display {
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 20px;
+        text-align: right;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    html.dark-mode .calc-display {
+        background: rgba(0, 0, 0, 0.2);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .calc-formula {
+        color: #6b7280;
+        font-size: 13px;
+        margin-bottom: 6px;
+        min-height: 18px;
+    }
+
+    html.dark-mode .calc-formula {
+        color: #a0a0a0;
+    }
+
+    .calc-result {
+        color: var(--text-light);
+        font-size: 42px;
+        font-weight: 600;
+        word-break: break-all;
+    }
+
+    html.dark-mode .calc-result {
+        color: var(--text-dark);
+    }
+
+    .calc-buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+    }
+
+    .calc-btn {
+        background: rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        color: var(--text-light);
+        padding: 16px;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        width: 100%;
+    }
+
+    .calc-btn:hover {
+        background: rgba(0, 0, 0, 0.12);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .calc-btn:active {
+        transform: translateY(0);
+    }
+
+    html.dark-mode .calc-btn {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.1);
+        color: var(--text-dark);
+    }
+
+    html.dark-mode .calc-btn:hover {
+        background: rgba(255, 255, 255, 0.12);
+        box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+    }
+
+    .calc-btn.operator {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: white;
+    }
+
+    .calc-btn.operator:hover {
+        background: var(--primary-dark);
+        border-color: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(23, 162, 184, 0.3);
+    }
+
+    .calc-btn.equals {
+        background: #10b981;
+        border-color: #10b981;
+        color: white;
+        grid-column: span 2;
+    }
+
+    .calc-btn.equals:hover {
+        background: #059669;
+        border-color: #059669;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+
+    .calc-btn.clear {
+        background: #ef4444;
+        border-color: #ef4444;
+        color: white;
+    }
+
+    .calc-btn.clear:hover {
+        background: #dc2626;
+        border-color: #dc2626;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    }
+
+    .back-section {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .back-link {
+        color: var(--primary);
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+    }
+
+    .back-link:hover {
+        color: var(--primary-dark);
+        transform: translateX(-2px);
+    }
+
+    /* Tablet */
+    @media (max-width: 768px) {
+        .calculator {
+            max-width: 380px;
+            padding: 20px;
+        }
+
+        .calc-display {
+            padding: 14px;
+            margin-bottom: 16px;
+        }
+
+        .calc-result {
+            font-size: 38px;
+        }
+
+        .calc-buttons {
+            gap: 7px;
+        }
+
+        .calc-btn {
+            padding: 14px;
+            font-size: 16px;
+        }
+    }
+
+    /* Mobile */
+    @media (max-width: 480px) {
+        .calculator {
+            max-width: 100%;
+            padding: 16px;
+            margin: 0;
+            border-radius: 12px;
+        }
+
+        .calc-display {
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+        }
+
+        .calc-formula {
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .calc-result {
+            font-size: 32px;
+        }
+
+        .calc-buttons {
+            gap: 6px;
+        }
+
+        .calc-btn {
+            padding: 12px;
+            font-size: 15px;
+            border-radius: 6px;
+        }
+    }
+
+    /* Extra small */
+    @media (max-width: 360px) {
+        .calculator {
+            padding: 12px;
+        }
+
+        .calc-display {
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .calc-result {
+            font-size: 28px;
+        }
+
+        .calc-buttons {
+            gap: 5px;
+        }
+
+        .calc-btn {
+            padding: 10px;
+            font-size: 13px;
+        }
+    }
+</style>
+<script src="{{ asset('js/theme.js') }}"></script>
 
 <div class="container">
     <div class="dashboard-header">
@@ -24,81 +255,124 @@
         </div>
     </div>
 
-    <div class="card" style="padding: 30px;">
-        <form method="GET" style="gap: 20px;">
-            <!-- Input Numbers Section -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
-                <div>
-                    <label style="display: block; font-size: 12px; font-weight: 600; color: #666; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">First Number</label>
-                    <input type="number" name="a" placeholder="Enter number" value="{{ request('a') }}" step="any" style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 15px; transition: all 0.3s ease;" onfocus="this.style.borderColor='#17a2b8'; this.style.boxShadow='0 0 0 3px rgba(23, 162, 184, 0.1)';" onblur="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none';">
-                </div>
-                
-                <div>
-                    <label style="display: block; font-size: 12px; font-weight: 600; color: #666; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Second Number</label>
-                    <input type="number" name="b" placeholder="Enter number" value="{{ request('b') }}" step="any" style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 15px; transition: all 0.3s ease;" onfocus="this.style.borderColor='#17a2b8'; this.style.boxShadow='0 0 0 3px rgba(23, 162, 184, 0.1)';" onblur="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none';">
-                </div>
-            </div>
+    <div class="calculator">
 
-            <!-- Operation Selection -->
-            <div style="margin-bottom: 20px;">
-                <label style="display: block; font-size: 12px; font-weight: 600; color: #666; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Operation</label>
-                <select name="op" style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 15px; background: white; color: #333; cursor: pointer; transition: all 0.3s ease;" onfocus="this.style.borderColor='#17a2b8'; this.style.boxShadow='0 0 0 3px rgba(23, 162, 184, 0.1)';" onblur="this.style.borderColor='#e0e0e0'; this.style.boxShadow='none';">
-                    <option value="+" {{ request('op') == '+' ? 'selected' : '' }}>➕ Addition (+)</option>
-                    <option value="-" {{ request('op') == '-' ? 'selected' : '' }}>➖ Subtraction (-)</option>
-                    <option value="*" {{ request('op') == '*' ? 'selected' : '' }}>✖️ Multiplication (×)</option>
-                    <option value="/" {{ request('op') == '/' ? 'selected' : '' }}>➗ Division (÷)</option>
-                </select>
-            </div>
+        <!-- DISPLAY -->
+        <div class="calc-display">
+            <div class="calc-formula" id="formula"></div>
+            <div class="calc-result" id="display">0</div>
+        </div>
 
-            <!-- Calculate Button -->
-            <button type="submit" class="btn btn-add" style="width: 100%; padding: 14px; font-size: 15px; font-weight: 600; border: none; cursor: pointer; margin-top: 10px;">
-                🧮 Calculate
-            </button>
-        </form>
+        <!-- BUTTONS -->
+        <div class="calc-buttons">
 
-        <!-- Result Section -->
-        @if(request('a') !== null && request('b') !== null)
-            @php
-                $a = request('a');
-                $b = request('b');
-                $op = request('op');
-                $result = 0;
-                $formula = $a . ' ' . $op . ' ' . $b;
+            <button class="calc-btn clear" onclick="clearDisplay()">C</button>
+            <button class="calc-btn clear" onclick="backspace()">←</button>
+            <button class="calc-btn operator" onclick="setOperator('/')">÷</button>
+            <button class="calc-btn operator" onclick="setOperator('*')">×</button>
 
-                if ($op == '+') {
-                    $result = $a + $b;
-                } elseif ($op == '-') {
-                    $result = $a - $b;
-                } elseif ($op == '*') {
-                    $result = $a * $b;
-                } elseif ($op == '/') {
-                    $result = $b != 0 ? $a / $b : 'Error (Division by zero)';
-                }
-            @endphp
+            <button class="calc-btn" onclick="appendNumber('7')">7</button>
+            <button class="calc-btn" onclick="appendNumber('8')">8</button>
+            <button class="calc-btn" onclick="appendNumber('9')">9</button>
+            <button class="calc-btn operator" onclick="setOperator('-')">−</button>
 
-            <div style="margin-top: 30px; padding-top: 25px; border-top: 2px solid #e0e0e0;">
-                <p style="color: #999; font-size: 12px; margin-bottom: 12px; text-align: center; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">📊 Result</p>
-                <div style="background: linear-gradient(135deg, #17a2b8 0%, #0f7d8f 100%); padding: 25px; border-radius: 12px; text-align: center; box-shadow: 0 10px 30px rgba(23, 162, 184, 0.2);">
-                    <p style="color: rgba(255, 255, 255, 0.85); font-size: 13px; margin-bottom: 10px; letter-spacing: 0.5px;">{{ $formula }}</p>
-                    <h2 style="color: white; font-size: 38px; font-weight: 800; margin: 0; letter-spacing: -0.5px;">
-                        @if(is_numeric($result))
-                            {{ number_format($result, 2, '.', '') }}
-                        @else
-                            {{ $result }}
-                        @endif
-                    </h2>
-                </div>
-            </div>
-        @endif
+            <button class="calc-btn" onclick="appendNumber('4')">4</button>
+            <button class="calc-btn" onclick="appendNumber('5')">5</button>
+            <button class="calc-btn" onclick="appendNumber('6')">6</button>
+            <button class="calc-btn operator" onclick="setOperator('+')">+</button>
+
+            <button class="calc-btn" onclick="appendNumber('1')">1</button>
+            <button class="calc-btn" onclick="appendNumber('2')">2</button>
+            <button class="calc-btn" onclick="appendNumber('3')">3</button>
+            <button class="calc-btn equals" onclick="calculate()">=</button>
+
+            <button class="calc-btn" onclick="appendNumber('0')">0</button>
+            <button class="calc-btn" onclick="appendNumber('.')">.</button>
+
+        </div>
     </div>
 
-    <div style="margin-top: 25px; text-align: center;">
-        <a href="/tasks" class="btn" style="background: rgba(255, 255, 255, 0.15); color: white; text-decoration: none; padding: 11px 22px; border-radius: 8px; display: inline-block; transition: all 0.3s ease; border: 1px solid rgba(255, 255, 255, 0.2);" onmouseover="this.style.background='rgba(255, 255, 255, 0.25)'; this.style.borderColor='rgba(255, 255, 255, 0.3)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.15)'; this.style.borderColor='rgba(255, 255, 255, 0.2)';">
-            ← Back to Tasks
-        </a>
+    <div class="back-section">
+        <a href="/tasks" class="back-link">← Kembali ke Tugas</a>
     </div>
 </div>
 
-</body>
-</html>
+<script>
+    let display = document.getElementById('display');
+    let formula = document.getElementById('formula');
 
+    let currentValue = '0';
+    let operator = null;
+    let previousValue = null;
+    let shouldReset = false;
+
+    function updateDisplay() {
+        display.textContent = currentValue.length > 10 ? currentValue.substring(0, 10) + '...' : currentValue;
+    }
+
+    function appendNumber(num) {
+        if (shouldReset) {
+            currentValue = num;
+            shouldReset = false;
+        } else {
+            if (currentValue === '0' && num !== '.') {
+                currentValue = num;
+            } else if (num === '.' && currentValue.includes('.')) {
+                return;
+            } else {
+                currentValue += num;
+            }
+        }
+        updateDisplay();
+    }
+
+    function setOperator(op) {
+        if (operator !== null && !shouldReset) {
+            calculate();
+        }
+        previousValue = currentValue;
+        operator = op;
+        shouldReset = true;
+        formula.textContent = previousValue + ' ' + op;
+    }
+
+    function calculate() {
+        if (!operator || !previousValue) return;
+
+        let result;
+        let prev = parseFloat(previousValue);
+        let curr = parseFloat(currentValue);
+
+        switch (operator) {
+            case '+': result = prev + curr; break;
+            case '-': result = prev - curr; break;
+            case '*': result = prev * curr; break;
+            case '/': result = curr !== 0 ? prev / curr : 'Error'; break;
+        }
+
+        currentValue = result.toString();
+        operator = null;
+        previousValue = null;
+        shouldReset = true;
+        formula.textContent = '';
+        updateDisplay();
+    }
+
+    function clearDisplay() {
+        currentValue = '0';
+        operator = null;
+        previousValue = null;
+        shouldReset = false;
+        formula.textContent = '';
+        updateDisplay();
+    }
+
+    function backspace() {
+        if (currentValue.length > 1) {
+            currentValue = currentValue.slice(0, -1);
+        } else {
+            currentValue = '0';
+        }
+        updateDisplay();
+    }
+</script>

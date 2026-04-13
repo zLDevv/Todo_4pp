@@ -1,4 +1,64 @@
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+<style>
+    .team-header {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 25px;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .team-header h1 {
+        margin: 0;
+        flex: 1;
+        min-width: 200px;
+    }
+
+    .team-header-actions {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    @media (max-width: 768px) {
+        .team-header {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .team-header h1 {
+            width: 100%;
+            text-align: center;
+        }
+
+        .team-header-actions {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .team-header h1 {
+            font-size: 1.2em !important;
+        }
+
+        .team-header-actions {
+            flex-direction: column;
+        }
+
+        .team-header-actions span,
+        .team-header-actions form {
+            width: 100%;
+            text-align: center;
+        }
+
+        .team-header-actions button {
+            width: 100%;
+        }
+    }
+</style>>
 @if(session('success'))
     <div id="toast" style="background:#10b981;color:white;padding:14px 16px;margin-bottom:20px;border-radius:8px;font-weight:500;box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);animation: slideIn 0.3s ease;">
         {{ session('success') }}
@@ -24,9 +84,9 @@
 @endif
 
 <div class="container">
-    <div style="display: flex; gap: 15px; margin-bottom: 25px; align-items: center; justify-content: space-between;">
+    <div class="team-header">
         <h1 style="margin: 0;">{{ $team->name }}</h1>
-        <div style="display: flex; gap: 10px; align-items: center;">
+        <div class="team-header-actions">
             <span style="color: white; font-size: 14px;">👤  {{ Auth::user()->name }}</span>
             <form action="/logout" method="POST" style="display: inline;">
                 @csrf

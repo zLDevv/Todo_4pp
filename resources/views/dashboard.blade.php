@@ -30,7 +30,7 @@
     <!-- Stats Cards Grid -->
     <section class="card section-card">
         <!-- My Tasks -->
-        <h2 class="section-title"><span style="font-size: 1.4em;">📋</span> My Tasks</h2>
+        <h2 class="section-title"><span style="font-size: 1.4em;"></span> My Tasks</h2>
         <div class="stats-grid">
             <div class="card stat-card">
                 <p>Total</p>
@@ -47,7 +47,7 @@
         </div>
 
         <!-- Team Tasks -->
-        <h2 class="section-title" style="margin-top: 40px;"><span style="font-size: 1.4em;">👥</span> Team Tasks</h2>
+        <h2 class="section-title" style="margin-top: 40px;"><span style="font-size: 1.4em;"></span> Team Tasks</h2>
         <div class="stats-grid">
             <div class="card stat-card">
                 <p>Total</p>
@@ -66,7 +66,7 @@
 
     <!-- Quick Actions -->
     <div class="card quick-actions-card">
-        <h2 class="section-title" style="margin-bottom: 20px;"><span style="font-size: 1.4em;">⚡</span> Quick Actions</h2>
+        <h2 class="section-title" style="margin-bottom: 20px;"><span style="font-size: 1.4em;"></span> Quick Actions</h2>
         <div class="quick-actions">
             <a href="/tasks" class="btn btn-add action-btn">📋 View All Tasks</a>
             <a href="/tasks/create" class="btn action-btn action-btn-create">✨ Create New Task</a>

@@ -1,4 +1,82 @@
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+<style>
+    /* Responsive form styles */
+    .form-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+    }
+
+    .back-link {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        padding: 10px 16px;
+        text-decoration: none;
+        border-radius: 6px;
+        display: inline-block;
+        margin-bottom: 25px;
+        transition: all 0.3s ease;
+    }
+
+    .back-link:hover {
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+        .form-card {
+            padding: 20px;
+        }
+
+        .form-grid {
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .form-card {
+            padding: 16px;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-grid {
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .back-link {
+            padding: 8px 12px;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+        form button {
+            padding: 12px !important;
+            font-size: 14px !important;
+        }
+    }
+</style>
 <script src="{{ asset('js/theme.js') }}"></script>
 
 <div class="container">
@@ -17,10 +95,10 @@
         </div>
     </div>
 
-    <a href="/tasks" class="btn" style="background: rgba(255, 255, 255, 0.2); color: white; padding: 10px 16px; text-decoration: none; border-radius: 6px; display: inline-block; margin-bottom: 25px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255, 255, 255, 0.3)'" onmouseout="this.style.background='rgba(255, 255, 255, 0.2)'">← Back to Tasks</a>
+    <a href="/tasks" class="back-link">← Back to Tasks</a>
 
     <!-- Form Card -->
-    <div style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; padding: 30px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);">
+    <div class="form-card">
         <form action="/tasks/{{ $task->id }}" method="POST">
             @csrf
             @method('PUT')
@@ -32,7 +110,7 @@
             </div>
 
             <!-- Priority and Category Grid -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px;">
+            <div class="form-grid">
                 <div>
                     <label for="priority" style="display: block; margin-bottom: 8px; color: #333; font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px;">Priority</label>
                     <select name="priority" id="priority" style="width: 100%; padding: 12px; border: 2px solid #333; border-radius: 8px; background: #fff; color: #333; font-size: 14px; cursor: pointer; transition: all 0.3s ease;" onfocus="this.style.borderColor='#17a2b8'" onblur="this.style.borderColor='#000000'">
