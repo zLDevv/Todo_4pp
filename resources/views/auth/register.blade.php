@@ -7,24 +7,34 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <script src="{{ asset('js/theme.js') }}"></script>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         html, body {
+            width: 100%;
             height: 100%;
+            background: linear-gradient(135deg, #0d1b2a 0%, #000000 100%) !important;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 20px;
         }
 
         .login-container {
             width: 100%;
             max-width: 420px;
-            padding: 20px;
+            z-index: 10;
         }
 
         .login-card {
             background: white;
             padding: 40px;
             border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            z-index: 10;
         }
 
         .login-card h1 {
@@ -42,6 +52,8 @@
         }
 
         .login-card form {
+            display: flex;
+            flex-direction: column;
             gap: 16px;
         }
 
@@ -53,45 +65,42 @@
 
         .form-group label {
             font-weight: 600;
-            color: #000000;
+            color: #1f2937;
             font-size: 14px;
         }
 
         input[type="text"],
         input[type="email"],
         input[type="password"] {
-            padding: 12px 14px;
-            border: 1px solid #374151;
-            border-radius: 8px;
-            font-size: 14px;
-            font-family: inherit;
-            transition: all 0.3s ease;
-            background: #1f2937;
-            color: #ffffff;
+            padding: 12px 14px !important;
+            border: 1px solid #e5e7eb !important;
+            border-radius: 8px !important;
+            font-size: 14px !important;
+            font-family: inherit !important;
+            transition: all 0.3s ease !important;
+            background: #f9fafb !important;
+            color: #1f2937 !important;
         }
 
         input[type="text"]:focus,
         input[type="email"]:focus,
         input[type="password"]:focus {
-            outline: none;
-            border-color: #17a2b8;
-            box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.1);
+            outline: none !important;
+            border-color: #17a2b8 !important;
+            box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.1) !important;
+            background: white !important;
         }
 
         input[type="text"]::placeholder,
         input[type="email"]::placeholder,
         input[type="password"]::placeholder {
-            color: #9ca3af;
-        }
-
-        .form-group input {
-            margin: 0;
+            color: #9ca3af !important;
         }
 
         .login-btn {
             width: 100%;
             padding: 12px 16px;
-            background: linear-gradient(135deg, #17a2b8 0%, #0d1b2a 100%);
+            background: linear-gradient(135deg, #17a2b8 0%, #0f7d8f 100%);
             color: white;
             border: none;
             border-radius: 8px;
@@ -111,7 +120,7 @@
             transform: translateY(0);
         }
 
-        .error-message {
+        .error-list {
             background: #fee2e2;
             color: #991b1b;
             padding: 12px 14px;
@@ -119,6 +128,15 @@
             margin-bottom: 20px;
             font-size: 14px;
             border-left: 4px solid #dc2626;
+        }
+
+        .error-list ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .error-list li {
+            margin: 4px 0;
         }
 
         .signup-link {
@@ -145,26 +163,7 @@
             margin-bottom: 20px;
         }
 
-        .error-list {
-            background: #fee2e2;
-            color: #991b1b;
-            padding: 12px 14px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-size: 14px;
-            border-left: 4px solid #dc2626;
-        }
-
-        .error-list ul {
-            margin: 0;
-            padding-left: 20px;
-        }
-
-        .error-list li {
-            margin: 4px 0;
-        }
-
-        /* Responsive Styles */
+        /* Responsive */
         @media (max-width: 480px) {
             .login-card {
                 padding: 20px;
@@ -195,12 +194,7 @@
             .login-btn {
                 padding: 10px 12px;
                 font-size: 14px;
-            }
-
-            .error-message,
-            .error-list {
-                padding: 10px 12px;
-                font-size: 12px;
+                margin-top: 8px;
             }
 
             .signup-link {
@@ -233,6 +227,7 @@
                 font-size: 15px;
             }
         }
+    </style>
 </head>
 <body>
 
