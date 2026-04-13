@@ -72,5 +72,8 @@ Route::middleware('auth')->group(function () {
 | TEAM INVITATION (BOLEH TANPA LOGIN)
 |--------------------------------------------------------------------------
 */
-Route::get('/team-invitations/{token}/accept', [TeamController::class, 'acceptInvitation']);
-Route::get('/team-invitations/{token}/decline', [TeamController::class, 'declineInvitation']);
+Route::get('/team-invitations/{token}/accept', [TeamController::class, 'acceptInvitation'])
+    ->name('team-invitations.accept');
+
+Route::get('/team-invitations/{token}/decline', [TeamController::class, 'declineInvitation'])
+    ->name('team-invitations.decline');
