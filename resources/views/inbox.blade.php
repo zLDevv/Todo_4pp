@@ -19,8 +19,13 @@
         padding: 12px 16px;
     }
 
+    .card-header h3 {
+        font-size: 15px !important;
+    }
+
     .card-body {
         padding: 12px 16px;
+        font-size: 12px !important;
     }
 
     .card-actions {
@@ -51,11 +56,12 @@
         }
 
         .card-header h3 {
-            font-size: 15px !important;
+            font-size: 16px !important;
         }
 
         .card-body {
             padding: 14px 18px;
+            font-size: 13px !important;
         }
 
         .card-actions {
@@ -85,6 +91,7 @@
 
         .card-body {
             padding: 20px;
+            font-size: 13px !important;
         }
 
         .card-actions {
@@ -95,22 +102,6 @@
         .card-actions a {
             padding: 12px 14px;
             font-size: 13px;
-        }
-    }
-
-    .card-body p {
-            font-size: 12px !important;
-        }
-
-        .card-actions {
-            padding: 0 12px 12px 12px;
-            flex-direction: column;
-        }
-
-        .card-actions a {
-            width: 100%;
-            padding: 10px !important;
-            font-size: 12px !important;
         }
     }
 </style>

@@ -3,81 +3,77 @@
     /* Responsive form styles */
     .form-card {
         background: rgba(255, 255, 255, 0.95);
-        border-radius: 10px;
-        padding: 16px;
+        border-radius: 12px;
+        padding: 30px;
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
     }
 
     .form-grid {
         display: grid;
-        grid-template-columns: 1fr;
-        gap: 12px;
-        margin-bottom: 18px;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-bottom: 25px;
     }
 
     .form-group {
-        margin-bottom: 18px;
+        margin-bottom: 25px;
     }
 
     .back-link {
         background: rgba(255, 255, 255, 0.2);
         color: white;
-        padding: 8px 12px;
+        padding: 10px 16px;
         text-decoration: none;
         border-radius: 6px;
         display: inline-block;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
         transition: all 0.3s ease;
-        font-size: 13px;
     }
 
     .back-link:hover {
         background: rgba(255, 255, 255, 0.3);
     }
 
-    /* Tablet responsiveness */
-    @media (min-width: 480px) {
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
         .form-card {
             padding: 20px;
-            border-radius: 11px;
         }
 
         .form-grid {
-            gap: 13px;
-            margin-bottom: 20px;
+            grid-template-columns: 1fr;
+            gap: 12px;
         }
 
         .form-group {
             margin-bottom: 20px;
-        }
-
-        .back-link {
-            padding: 9px 13px;
-            margin-bottom: 22px;
-            font-size: 13px;
         }
     }
 
-    @media (min-width: 768px) {
+    @media (max-width: 480px) {
         .form-card {
-            padding: 30px;
-            border-radius: 12px;
-        }
-
-        .form-grid {
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 25px;
+            padding: 16px;
+            border-radius: 10px;
         }
 
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 18px;
+        }
+
+        .form-grid {
+            gap: 12px;
+            margin-bottom: 18px;
         }
 
         .back-link {
-            padding: 10px 16px;
-            margin-bottom: 25px;
-            font-size: 14px;
+            padding: 8px 12px;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+        form button {
+            padding: 12px !important;
+            font-size: 14px !important;
         }
     }
 </style>

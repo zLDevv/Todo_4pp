@@ -39,19 +39,19 @@
         <a href="/calculator" class="btn nav-btn">Calc</a>
     </div>
 
-    <!-- Add Task Button -->
-    <a href="/create-team-task" class="btn btn-add" style="text-decoration: none; padding: 12px; display: block; margin-bottom: 20px; font-weight: 600; border: none; cursor: pointer; text-align: center; width: 100%;">+ Add Team Task</a>
-
     <!-- Search Section -->
-    <form method="GET" style="margin-bottom: 25px; display: flex; gap: 8px; flex-direction: column; align-items: stretch;">
-        <div style="flex: 1; display: flex; align-items: center; background: white; border-radius: 8px; border: 2px solid #e0e0e0; transition: all 0.3s ease; width: 100%;">
+    <form method="GET" style="margin-bottom: 25px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+        <div style="flex: 1; min-width: 200px; display: flex; align-items: center; background: white; border-radius: 8px; border: 2px solid #e0e0e0; transition: all 0.3s ease;">
             <svg style="width: 18px; height: 18px; margin: 0 12px; color: #9ca3af; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
             </svg>
-            <input type="text" name="search" value="{{ request('search') }}" placeholder="Search team tasks..." style="flex: 1; border: none; padding: 12px 0; padding-right: 12px; font-size: 16px; width: 100%;">
+            <input type="text" name="search" value="{{ request('search') }}" placeholder="Search team tasks..." style="flex: 1; border: none; padding: 12px 0; padding-right: 12px; font-size: 14px;">
         </div>
-        <button type="submit" class="btn btn-add" style="padding: 12px 16px; font-size: 13px; border: none; cursor: pointer; width: 100%;">🔍 Search</button>
+        <button type="submit" class="btn btn-add" style="padding: 10px 18px; font-size: 13px; border: none; cursor: pointer; white-space: nowrap;">🔍 Search</button>
     </form>
+
+    <!-- Add Task Button -->
+    <a href="/create-team-task" class="btn btn-add" style="text-decoration: none; padding: 12px; display: block; margin-bottom: 20px; font-weight: 600; border: none; cursor: pointer; text-align: center; width: 100%;">+ Add Team Task</a>
 
     @if ($tasks->isEmpty())
         <div style="background: rgba(255, 255, 255, 0.08); border: 2px dashed rgba(255, 255, 255, 0.2); border-radius: 12px; padding: 60px 20px; text-align: center;">
@@ -77,16 +77,16 @@
                 <!-- Team Tasks -->
                 @foreach ($teamTasks as $task)
                     <div class="card" style="margin-bottom: 12px;">
-                        <div style="display: flex; align-items: start; justify-content: space-between; margin-bottom: 12px;">
-                            <div style="flex: 1;">
-                                <h3 class="{{ $task->status == 'done' ? 'done' : '' }}" style="margin: 0 0 4px 0; font-size: 18px;">
+                        <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; gap: 8px; flex-wrap: wrap;">
+                            <div style="flex: 1; min-width: 200px;">
+                                <h3 class="{{ $task->status == 'done' ? 'done' : '' }}" style="margin: 0 0 4px 0; font-size: 18px; word-break: break-word;">
                                     {{ $task->title }}
                                 </h3>
                                 <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
                                     @if($task->category)
-                                        <span style="background: rgba(23, 162, 184, 0.2); color: #17a2b8; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 500;">📂 {{ $task->category }}</span>
+                                        <span style="background: rgba(23, 162, 184, 0.2); color: #17a2b8; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 500; white-space: nowrap;">📂 {{ $task->category }}</span>
                                     @endif
-                                    <span class="priority-{{ $task->priority }}" style="padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 500;">
+                                    <span class="priority-{{ $task->priority }}" style="padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 500; white-space: nowrap;">
                                         @if($task->priority == 'low')
                                             🟢 Low
                                         @elseif($task->priority == 'medium')
@@ -97,8 +97,8 @@
                                     </span>
                                 </div>
                             </div>
-                            <div style="margin-left: 12px;">
-                                <span style="background: {{ $task->status == 'done' ? '#10b981' : '#f59e0b' }}; color: white; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600;">
+                            <div style="flex-shrink: 0;">
+                                <span style="background: {{ $task->status == 'done' ? '#10b981' : '#f59e0b' }}; color: white; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; white-space: nowrap;">
                                     {{ $task->status == 'done' ? '✅ Done' : '⏳ Pending' }}
                                 </span>
                             </div>
@@ -112,39 +112,39 @@
                         <!-- Task Info -->
                         <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 12px 0; padding: 12px 0; border-top: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1); font-size: 13px;">
                             <div>
-                                <span style="color: rgba(255, 255, 255, 0.6);">👤 Assigned by:</span>
-                                <p style="margin: 4px 0 0 0; color: white; font-weight: 500;">{{ $task->user->name ?? 'Unknown' }}</p>
+                                <span style="color: rgba(255, 255, 255, 0.6); white-space: nowrap;">👤 Assigned by:</span>
+                                <p style="margin: 4px 0 0 0; color: white; font-weight: 500; word-break: break-word;">{{ $task->user->name ?? 'Unknown' }}</p>
                             </div>
                             <div>
-                                <span style="color: rgba(255, 255, 255, 0.6);">📅 Deadline:</span>
-                                <p style="margin: 4px 0 0 0; color: {{ strtotime($task->deadline) < time() ? '#ef4444' : 'white' }}; font-weight: 500;">{{ date('M d, Y', strtotime($task->deadline)) }}</p>
+                                <span style="color: rgba(255, 255, 255, 0.6); white-space: nowrap;">📅 Deadline:</span>
+                                <p style="margin: 4px 0 0 0; color: {{ strtotime($task->deadline) < time() ? '#ef4444' : 'white' }}; font-weight: 500; word-break: break-word;">{{ date('M d, Y', strtotime($task->deadline)) }}</p>
                             </div>
                         </div>
 
                         <!-- Task Actions -->
-                        <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: space-between;">
-                            <div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; row-gap: 8px;">
+                            <div style="grid-column: 1;">
                                 @if ($task->status == 'pending')
-                                    <form action="/tasks/{{ $task->id }}/done" method="POST" style="display:inline;">
+                                    <form action="/tasks/{{ $task->id }}/done" method="POST" style="display: inline; width: 100%;">
                                         @csrf
-                                        <button class="btn btn-done" style="padding: 8px 12px; font-size: 12px; border: none; cursor: pointer;">✓ Mark Done</button>
+                                        <button class="btn btn-done" style="padding: 8px 12px; font-size: 12px; border: none; cursor: pointer; width: 100%;">✓ Mark Done</button>
                                     </form>
                                 @else
-                                    <form action="/tasks/{{ $task->id }}/undone" method="POST" style="display:inline;">
+                                    <form action="/tasks/{{ $task->id }}/undone" method="POST" style="display: inline; width: 100%;">
                                         @csrf
-                                        <button class="btn" style="background: #8b5cf6; padding: 8px 12px; font-size: 12px; border: none; cursor: pointer;">↩️ Undone</button>
+                                        <button class="btn" style="background: #8b5cf6; padding: 8px 12px; font-size: 12px; border: none; cursor: pointer; width: 100%;">↩️ Undone</button>
                                     </form>
                                 @endif
                             </div>
 
                             @if ($task->user_id == Auth::id())
-                                <div style="display: flex; gap: 8px;">
-                                    <a href="/tasks/{{ $task->id }}/edit" class="btn" style="background: #f59e0b; padding: 8px 12px; font-size: 12px; text-decoration: none; border: none; cursor: pointer;">✏️ Edit</a>
+                                <div style="display: flex; gap: 8px; grid-column: 2;">
+                                    <a href="/tasks/{{ $task->id }}/edit" class="btn" style="background: #f59e0b; padding: 8px 12px; font-size: 12px; text-decoration: none; border: none; cursor: pointer; flex: 1; text-align: center;">✏️ Edit</a>
 
-                                    <form action="/tasks/{{ $task->id }}" method="POST" style="display:inline;">
+                                    <form action="/tasks/{{ $task->id }}" method="POST" style="display: inline; flex: 1;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="button" class="btn btn-delete" onclick="openModal(this)">Delete</button>
+                                        <button type="button" class="btn btn-delete" onclick="openModal(this)" style="width: 100%;">Delete</button>
                                     </form>
                                 </div>
                             @endif
