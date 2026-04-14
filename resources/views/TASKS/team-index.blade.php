@@ -40,17 +40,17 @@
     </div>
 
     <!-- Add Task Button -->
-    <a href="/create-team-task" class="btn btn-add" style="text-decoration: none; padding: 12px 20px; display: inline-block; margin-bottom: 25px; font-weight: 600; border: none; cursor: pointer;">+ Add Team Task</a>
+    <a href="/create-team-task" class="btn btn-add" style="text-decoration: none; padding: 12px; display: block; margin-bottom: 20px; font-weight: 600; border: none; cursor: pointer; text-align: center; width: 100%;">+ Add Team Task</a>
 
     <!-- Search Section -->
-    <form method="GET" style="margin-bottom: 25px; display: flex; gap: 10px; align-items: center;">
-        <div style="flex: 1; display: flex; align-items: center; background: white; border-radius: 8px; border: 2px solid #e0e0e0; transition: all 0.3s ease;">
+    <form method="GET" style="margin-bottom: 25px; display: flex; gap: 8px; flex-direction: column; align-items: stretch;">
+        <div style="flex: 1; display: flex; align-items: center; background: white; border-radius: 8px; border: 2px solid #e0e0e0; transition: all 0.3s ease; width: 100%;">
             <svg style="width: 18px; height: 18px; margin: 0 12px; color: #9ca3af; flex-shrink: 0;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
             </svg>
-            <input type="text" name="search" value="{{ request('search') }}" placeholder="Search team tasks..." style="flex: 1; border: none; padding: 12px 0; padding-right: 12px; font-size: 14px;">
+            <input type="text" name="search" value="{{ request('search') }}" placeholder="Search team tasks..." style="flex: 1; border: none; padding: 12px 0; padding-right: 12px; font-size: 16px; width: 100%;">
         </div>
-        <button type="submit" class="btn btn-add" style="padding: 10px 18px; font-size: 13px; border: none; cursor: pointer;">🔍 Search</button>
+        <button type="submit" class="btn btn-add" style="padding: 12px 16px; font-size: 13px; border: none; cursor: pointer; width: 100%;">🔍 Search</button>
     </form>
 
     @if ($tasks->isEmpty())
@@ -65,19 +65,18 @@
                 $team = $teamTasks->first()->team;
             @endphp
             
-            <div style="margin-bottom: 35px;">
+            <div style="margin-bottom: 20px;">
                 <!-- Team Header -->
-                <div style="background: linear-gradient(135deg, rgba(23, 162, 184, 0.95) 0%, rgba(15, 125, 143, 0.95) 100%); padding: 25px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);">
-                    <h2 style="margin: 0 0 8px 0; color: white; font-size: 24px; font-weight: 700;">{{ $team->name ?? 'Unknown Team' }}</h2>
+                <div style="background: linear-gradient(135deg, rgba(23, 162, 184, 0.95) 0%, rgba(15, 125, 143, 0.95) 100%); padding: 14px 16px; border-radius: 10px; margin-bottom: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);">
+                    <h2 style="margin: 0 0 4px 0; color: white; font-size: 16px; font-weight: 700;">{{ $team->name ?? 'Unknown Team' }}</h2>
                     @if ($team && $team->description)
-                        <p style="margin: 0; color: rgba(255, 255, 255, 0.9); font-size: 14px;">{{ $team->description }}</p>
+                        <p style="margin: 0; color: rgba(255, 255, 255, 0.9); font-size: 12px;">{{ Str::limit($team->description, 100) }}</p>
                     @endif
                 </div>
 
                 <!-- Team Tasks -->
                 @foreach ($teamTasks as $task)
-                    <div class="card" style="margin-bottom: 16px;">
-                        <!-- Task Header -->
+                    <div class="card" style="margin-bottom: 12px;">
                         <div style="display: flex; align-items: start; justify-content: space-between; margin-bottom: 12px;">
                             <div style="flex: 1;">
                                 <h3 class="{{ $task->status == 'done' ? 'done' : '' }}" style="margin: 0 0 4px 0; font-size: 18px;">

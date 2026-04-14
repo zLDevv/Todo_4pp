@@ -2,13 +2,13 @@
 <style>
     .invitation-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 20px;
+        grid-template-columns: 1fr;
+        gap: 12px;
     }
 
     .invitation-card {
         background: rgba(255, 255, 255, 0.95);
-        border-radius: 12px;
+        border-radius: 10px;
         border-left: 4px solid #17a2b8;
         overflow: hidden;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
@@ -16,68 +16,89 @@
 
     .card-header {
         background: linear-gradient(135deg, rgba(23, 162, 184, 0.1) 0%, rgba(15, 125, 143, 0.1) 100%);
-        padding: 20px;
+        padding: 12px 16px;
     }
 
     .card-body {
-        padding: 20px;
+        padding: 12px 16px;
     }
 
     .card-actions {
-        padding: 0 20px 20px 20px;
-        display: flex;
-        gap: 10px;
+        padding: 0 16px 12px 16px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
     }
 
     .card-actions a {
-        flex: 1;
-        padding: 12px;
+        padding: 8px 10px;
         text-decoration: none;
         text-align: center;
         font-weight: 600;
         border: none;
         cursor: pointer;
-        border-radius: 8px;
+        border-radius: 6px;
+        font-size: 11px;
     }
 
-    @media (max-width: 768px) {
+    @media (min-width: 480px) {
         .invitation-grid {
-            grid-template-columns: 1fr;
-            gap: 15px;
+            gap: 14px;
         }
 
         .card-header {
-            padding: 16px;
+            padding: 14px 18px;
         }
 
         .card-header h3 {
-            font-size: 16px !important;
+            font-size: 15px !important;
         }
 
         .card-body {
-            padding: 16px;
+            padding: 14px 18px;
         }
 
         .card-actions {
-            padding: 0 16px 16px 16px;
+            padding: 0 18px 14px 18px;
+            gap: 10px;
+        }
+
+        .card-actions a {
+            padding: 9px 12px;
+            font-size: 12px;
         }
     }
 
-    @media (max-width: 480px) {
+    @media (min-width: 768px) {
+        .invitation-grid {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
         .card-header {
-            padding: 12px;
+            padding: 20px;
         }
 
         .card-header h3 {
-            font-size: 14px !important;
-            margin-bottom: 6px !important;
+            font-size: 17px !important;
         }
 
         .card-body {
-            padding: 12px;
+            padding: 20px;
         }
 
-        .card-body p {
+        .card-actions {
+            padding: 0 20px 20px 20px;
+            gap: 10px;
+        }
+
+        .card-actions a {
+            padding: 12px 14px;
+            font-size: 13px;
+        }
+    }
+
+    .card-body p {
             font-size: 12px !important;
         }
 

@@ -1,11 +1,12 @@
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 <style>
     .calculator {
-        max-width: 600px;
+        max-width: 100%;
+        width: 100%;
         margin: 0 auto;
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
-        border-radius: 14px;
-        padding: 24px;
+        border-radius: 10px;
+        padding: 12px;
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
         border: 1px solid rgba(255, 255, 255, 0.5);
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -17,11 +18,27 @@
         border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
+    @media (min-width: 480px) {
+        .calculator {
+            max-width: 500px;
+            padding: 16px;
+            border-radius: 11px;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .calculator {
+            max-width: 600px;
+            padding: 24px;
+            border-radius: 14px;
+        }
+    }
+
     .calc-display {
         background: rgba(255, 255, 255, 0.5);
-        border-radius: 12px;
-        padding: 16px;
-        margin-bottom: 20px;
+        border-radius: 8px;
+        padding: 12px;
+        margin-bottom: 12px;
         text-align: right;
         border: 1px solid rgba(0, 0, 0, 0.1);
         transition: all 0.3s ease;
@@ -32,20 +49,50 @@
         border-color: rgba(255, 255, 255, 0.1);
     }
 
+    @media (min-width: 480px) {
+        .calc-display {
+            padding: 14px;
+            margin-bottom: 16px;
+            border-radius: 10px;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .calc-display {
+            padding: 16px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+        }
+    }
+
     .calc-formula {
         color: #6b7280;
-        font-size: 13px;
-        margin-bottom: 6px;
-        min-height: 18px;
+        font-size: 10px;
+        margin-bottom: 4px;
+        min-height: 14px;
     }
 
     html.dark-mode .calc-formula {
         color: #a0a0a0;
     }
 
+    @media (min-width: 480px) {
+        .calc-formula {
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .calc-formula {
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+    }
+
     .calc-result {
         color: var(--text-light);
-        font-size: 42px;
+        font-size: 28px;
         font-weight: 600;
         word-break: break-all;
     }
@@ -54,23 +101,57 @@
         color: var(--text-dark);
     }
 
+    @media (min-width: 480px) {
+        .calc-result {
+            font-size: 32px;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .calc-result {
+            font-size: 42px;
+        }
+    }
+
     .calc-buttons {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 8px;
+        gap: 6px;
+    }
+
+    @media (min-width: 768px) {
+        .calc-buttons {
+            gap: 8px;
+        }
     }
 
     .calc-btn {
         background: rgba(0, 0, 0, 0.08);
         border: 1px solid rgba(0, 0, 0, 0.1);
         color: var(--text-light);
-        padding: 16px;
-        border-radius: 8px;
-        font-size: 18px;
+        padding: 12px;
+        border-radius: 6px;
+        font-size: 14px;
         font-weight: 500;
         cursor: pointer;
         transition: all 0.2s ease;
         width: 100%;
+    }
+
+    @media (min-width: 480px) {
+        .calc-btn {
+            padding: 14px;
+            font-size: 16px;
+            border-radius: 7px;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .calc-btn {
+            padding: 16px;
+            font-size: 18px;
+            border-radius: 8px;
+        }
     }
 
     .calc-btn:hover {
