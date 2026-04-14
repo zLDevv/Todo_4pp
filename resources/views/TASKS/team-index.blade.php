@@ -1,6 +1,8 @@
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 <script src="{{ asset('js/theme.js') }}"></script>
 
+
+
 @if(session('success'))
     <div id="toast" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 14px 16px; margin-bottom: 20px; border-radius: 8px; font-weight: 500; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); animation: slideIn 0.3s ease;">
         ✅ {{ session('success') }}
