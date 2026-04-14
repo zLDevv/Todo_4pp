@@ -29,7 +29,7 @@
             font-size: 14px !important;
         }
     }
-</style>>
+</style>
 
 <div class="container">
     <div class="dashboard-header">
