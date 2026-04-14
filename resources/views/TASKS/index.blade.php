@@ -111,7 +111,7 @@
                         {{ date('M d, Y', strtotime($task->deadline)) }}
                     </p>
                 </div>
-                @if(strtotime($task->deadline) - time() < 86400 && $task->status != 'done')
+                @if(strtotime($task->deadline) - time() < 432000 && $task->status != 'done')
                     <div style="color: #ef4444; font-weight: 600; white-space: nowrap;">⚠️ Deadline Approaching!!!</div>
                 @endif
             </div>
