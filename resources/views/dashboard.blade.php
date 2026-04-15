@@ -6,7 +6,7 @@
     <div class="dashboard-header">
         <div class="header-content">
             <h1>Dashboard</h1>
-            <p>Your task overview and statistics</p>
+            <p>Your task overview and productivity insights</p>
         </div>
         <div class="header-actions">
             <span class="user-badge">👤 {{ Auth::user()->name }}</span>
@@ -23,54 +23,57 @@
         <a href="/tasks" class="btn nav-btn">My Tasks</a>
         <a href="/team-tasks" class="btn nav-btn">Team Tasks</a>
         <a href="/teams" class="btn nav-btn">Teams</a>
-        <a href="/inbox" class="btn btn-add nav-btn">Inbox</a>
+        <a href="/inbox" class="btn nav-btn">Inbox</a>
         <a href="/calculator" class="btn nav-btn">Calc</a>
     </div>
 
-    <!-- Stats Cards Grid -->
-    <section class="card section-card">
-        <!-- My Tasks -->
-        <h2 class="section-title"><span style="font-size: 1.4em;"></span> My Tasks</h2>
-        <div class="stats-grid">
-            <div class="card stat-card">
-                <p>Total</p>
-                <h2>{{ $my_total }}</h2>
-            </div>
-            <div class="card stat-card">
-                <p>Pending</p>
-                <h2>{{ $my_pending }}</h2>
-            </div>
-            <div class="card stat-card">
-                <p>Done</p>
-                <h2>{{ $my_done }}</h2>
-            </div>
+    <!-- My Tasks Statistics -->
+    <h2 class="section-title">My Tasks</h2>
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-label">Total Tasks</div>
+            <div class="stat-value">{{ $my_total }}</div>
         </div>
+        <div class="stat-card">
+            <div class="stat-label">Pending</div>
+            <div class="stat-value">{{ $my_pending }}</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Completed</div>
+            <div class="stat-value">{{ $my_done }}</div>
+        </div>
+    </div>
 
-        <!-- Team Tasks -->
-        <h2 class="section-title" style="margin-top: 40px;"><span style="font-size: 1.4em;"></span> Team Tasks</h2>
-        <div class="stats-grid">
-            <div class="card stat-card">
-                <p>Total</p>
-                <h2>{{ $team_total }}</h2>
-            </div>
-            <div class="card stat-card">
-                <p>Pending</p>
-                <h2>{{ $team_pending }}</h2>
-            </div>
-            <div class="card stat-card">
-                <p>Done</p>
-                <h2>{{ $team_done }}</h2>
-            </div>
+    <!-- Team Tasks Statistics -->
+    <h2 class="section-title">Team Tasks</h2>
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-label">Total Tasks</div>
+            <div class="stat-value">{{ $team_total }}</div>
         </div>
-    </section>
+        <div class="stat-card">
+            <div class="stat-label">Pending</div>
+            <div class="stat-value">{{ $team_pending }}</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Completed</div>
+            <div class="stat-value">{{ $team_done }}</div>
+        </div>
+    </div>
 
     <!-- Quick Actions -->
-    <div class="card quick-actions-card">
-        <h2 class="section-title" style="margin-bottom: 20px;"><span style="font-size: 1.4em;"></span> Quick Actions</h2>
+    <div class="card" style="margin-top: 40px;">
+        <h2 class="section-title" style="margin-top: 0; border: none; padding: 0 0 20px 0;">Quick Actions</h2>
         <div class="quick-actions">
-            <a href="/tasks" class="btn btn-add action-btn">📋 View All Tasks</a>
-            <a href="/tasks/create" class="btn action-btn action-btn-create">✨ Create New Task</a>
-            <a href="/teams" class="btn action-btn action-btn-browse">👥 Browse Teams</a>
+            <a href="/tasks" class="btn btn-add action-btn" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); text-decoration: none;">
+                View All Tasks
+            </a>
+            <a href="/tasks/create" class="btn action-btn action-btn-create" style="text-decoration: none;">
+                Create New Task
+            </a>
+            <a href="/teams" class="btn action-btn action-btn-browse" style="text-decoration: none;">
+                Manage Teams
+            </a>
         </div>
     </div>
 </div>

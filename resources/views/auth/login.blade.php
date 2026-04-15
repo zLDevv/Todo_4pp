@@ -45,6 +45,14 @@
             gap: 16px;
         }
 
+        .login-card input::placeholder {
+            color: rgba(0, 0, 0, 0.45);
+        }
+        
+        .form-group placeholder {
+            color: rgba(0, 0, 0, 0.45);
+        }
+
         .form-group {
             display: flex;
             flex-direction: column;
@@ -53,7 +61,7 @@
 
         .form-group label {
             font-weight: 600;
-            color: #374151;
+            color: #595f69;
             font-size: 14px;
         }
 
@@ -65,7 +73,6 @@
             font-size: 14px;
             font-family: inherit;
             transition: all 0.3s ease;
-            background: white;
         }
 
         input[type="email"]:focus,

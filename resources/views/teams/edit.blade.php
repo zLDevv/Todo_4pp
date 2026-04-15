@@ -24,7 +24,7 @@
             font-size: 14px !important;
         }
     }
-</style>>
+</style>
 
 <div class="container">
     <div class="dashboard-header">
@@ -56,7 +56,7 @@
 
         <div style="margin-bottom: 30px;">
             <label for="description" style="display: block; margin-bottom: 8px; color: white; font-weight: 500;">Description (Optional)</label>
-            <textarea id="description" name="description" placeholder="Enter team description" style="min-height: 100px; padding: 14px; border: 1px solid #e0e0e0; border-radius: 8px; font-family: inherit; font-size: 14px; resize: vertical; transition: all 0.3s ease; background: white;">{{ $team->description }}</textarea>
+            <textarea id="description" name="description" placeholder="Enter team description" style="min-height: 100px; padding: 14px; border-radius: 8px; font-family: inherit; font-size: 14px; resize: vertical; transition: all 0.3s ease;">{{ $team->description }}</textarea>
         </div>
 
         <button type="submit" class="btn btn-add" style="width: 100%; padding: 12px; font-size: 16px;">Update Team</button>

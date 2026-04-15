@@ -42,17 +42,27 @@ class TaskController extends Controller
 
     public function teamIndex(Request $request)
     {
-        $query = Task::whereNotNull('team_id')
-        ->whereHas('team') 
-        ->with('team');
+        // Get team IDs where user is owner or member
+        $ownedTeamIds = Auth::user()->ownedTeams()->pluck('teams.id')->toArray();
+        $memberTeamIds = Auth::user()->teams()->select('teams.id')->pluck('teams.id')->toArray();
+        $userTeamIds = array_merge($ownedTeamIds, $memberTeamIds);
 
-    if ($request->search) {
-        $query->where('title', 'like', '%' . $request->search . '%');
-    }
+        $query = Task::whereIn('team_id', $userTeamIds)
+            ->with('team');
 
-    $tasks = $query->get()->groupBy('team_id');
+        if ($request->search) {
+            $query->where('title', 'like', '%' . $request->search . '%');
+        }
 
-    return view('tasks.team-index', compact('tasks'));
+        if ($request->filter == 'done') {
+            $query->where('status', 'done');
+        } elseif ($request->filter == 'pending') {
+            $query->where('status', 'pending');
+        }
+
+        $tasks = $query->get()->groupBy('team_id');
+
+        return view('tasks.team-index', compact('tasks'));
     }
 
     public function create()
@@ -95,7 +105,8 @@ class TaskController extends Controller
         $task->status = 'done';
         $task->save();
 
-       return redirect('/tasks')->with('success', 'Task is successfully updated!');
+       $redirect = $task->team_id ? '/team-tasks' : '/tasks';
+       return redirect($redirect)->with('success', 'Task is successfully updated!');
     }
 
     public function undone($id)
@@ -104,7 +115,8 @@ class TaskController extends Controller
         $task->status = 'pending';
         $task->save();
 
-       return redirect('/tasks')->with('success', 'Task marked as pending!');
+       $redirect = $task->team_id ? '/team-tasks' : '/tasks';
+       return redirect($redirect)->with('success', 'Task marked as pending!');
     }
 
     public function edit($id)
@@ -134,7 +146,8 @@ class TaskController extends Controller
         $task->favorite = !$task->favorite;
         $task->save();
 
-    return redirect('/tasks');
+    $redirect = $task->team_id ? '/team-tasks' : '/tasks';
+    return redirect($redirect);
     }
 
     public function dashboard()
@@ -160,12 +173,17 @@ class TaskController extends Controller
         // ======================
         // TEAM TASK
         // ======================
-        $team_total = Task::whereHas('team')->count();
-        $team_done = Task::whereHas('team')
+        $ownedTeamIds = Auth::user()->ownedTeams()->pluck('teams.id')->toArray();
+        $memberTeamIds = Auth::user()->teams()->pluck('teams.id')->toArray();
+        $userTeamIds = array_merge($ownedTeamIds, $memberTeamIds);
+
+        $team_total = Task::whereIn('team_id', $userTeamIds)->count();
+
+        $team_done = Task::whereIn('team_id', $userTeamIds)
             ->where('status','done')
             ->count();
 
-        $team_pending = Task::whereHas('team')
+        $team_pending = Task::whereIn('team_id', $userTeamIds)
             ->where('status','pending')
             ->count();
 

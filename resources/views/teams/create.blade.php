@@ -61,7 +61,7 @@
         <!-- Description Field -->
         <div style="margin-bottom: 25px;">
             <label for="description" style="display: block; margin-bottom: 8px; color: #ffffff; font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px;">Description</label>
-            <textarea id="description" name="description" placeholder="Add team description..." style="width: 100%; background: #fff; color: #333; min-height: 120px; padding: 12px; border: 2px solid rgb(0, 0, 0); border-radius: 8px; font-family: inherit; font-size: 14px; resize: vertical; transition: all 0.3s ease;" onfocus="this.style.borderColor='#17a2b8'" onblur="this.style.borderColor='#000000'"></textarea>
+            <textarea id="description" name="description" placeholder="Add team description..." style="width: 100%; color: #ffffff; min-height: 120px; padding: 12px; border-radius: 8px; font-family: inherit; font-size: 14px; resize: vertical; transition: all 0.3s ease;" onfocus="this.style.borderColor='#17a2b8'" onblur="this.style.borderColor='#000000'"></textarea>
             </div>
 
         <button type="submit" class="btn btn-add" style="width: 100%; padding: 12px; font-size: 16px;">Create Team</button>

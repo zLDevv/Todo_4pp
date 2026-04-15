@@ -58,7 +58,7 @@
             width: 100%;
         }
     }
-</style>>
+</style>
 @if(session('success'))
     <div id="toast" style="background:#10b981;color:white;padding:14px 16px;margin-bottom:20px;border-radius:8px;font-weight:500;box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);animation: slideIn 0.3s ease;">
         {{ session('success') }}
@@ -100,19 +100,19 @@
     </div>
 
     @if ($team->description)
-        <div class="card" style="margin-bottom: 20px; background: #f3f4f6;">
-            <p style="margin: 0; color: #374151;">{{ $team->description }}</p>
+        <div class="card" style="margin-bottom: 20px;">
+            <p style="margin: 0; color: #ffffffa1;">{{ $team->description }}</p>
         </div>
     @endif
 
     <!-- Invite Member Section -->
     <div class="card" style="margin-bottom: 20px;">
-        <h3 style="margin: 0 0 15px 0; color: #1f2937;">➕ Invite Member</h3>
+        <h3 style="margin: 0 0 15px 0; color: #ffffff;">➕ Invite Member</h3>
         
         <form action="/teams/{{ $team->id }}/invite-member" method="POST" style="display: flex; gap: 10px;">
             @csrf
             <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
-                <input type="email" name="email" placeholder="Enter member's email" required style="padding: 12px 14px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px; font-family: inherit; transition: all 0.3s ease; background: white;">
+                <input type="email" name="email" placeholder="Enter member's email" required style="padding: 12px 14px; border: 1px solid #333; border-radius: 8px; font-size: 14px; font-family: inherit; transition: all 0.3s ease;">
                 <button type="submit" class="btn btn-add" style="padding: 10px 16px;">📧 Send Invitation</button>
             </div>
         </form>
@@ -121,13 +121,13 @@
     <!-- Pending Invitations -->
     @if ($invitations->count() > 0)
         <div class="card" style="margin-bottom: 20px;">
-            <h3 style="margin: 0 0 15px 0; color: #1f2937;">⏳ Pending Invitations</h3>
+            <h3 style="margin: 0 0 15px 0; color: #ffffff;">⏳ Pending Invitations</h3>
             
             <div style="border-top: 1px solid #e5e7eb; padding-top: 15px;">
                 @foreach ($invitations as $invitation)
                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #e5e7eb;">
                         <div>
-                            <p style="margin: 0; color: #1f2937; font-weight: 500;">{{ $invitation->email }}</p>
+                            <p style="margin: 0; color: #ffffff; font-weight: 500;">{{ $invitation->email }}</p>
                             <p style="margin: 4px 0 0 0; color: #9ca3af; font-size: 13px;">Invitation sent {{ $invitation->created_at->diffForHumans() }}</p>
                         </div>
                         <span style="background: #fef3c7; color: #92400e; padding: 4px 12px; border-radius: 6px; font-size: 12px; font-weight: 500;">Pending</span>
@@ -139,7 +139,7 @@
 
     <!-- Members List -->
     <div class="card">
-        <h3 style="margin: 0 0 15px 0; color: #1f2937;">Team Members ({{ $team->members()->count() }})</h3>
+        <h3 style="margin: 0 0 15px 0; color: #ffffff;">Team Members ({{ $team->members()->count() }})</h3>
         
         @if ($team->members()->count() === 0)
             <p style="color: #9ca3af; margin: 0;">No members yet</p>
@@ -148,7 +148,7 @@
                 @foreach ($team->members as $member)
                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #e5e7eb;">
                         <div>
-                            <p style="margin: 0; color: #1f2937; font-weight: 500;">
+                            <p style="margin: 0; color: #ffffff; font-weight: 500;">
                                 {{ $member->name }}
                                 @if ($member->id === $team->user_id)
                                     <span style="background: #dbeafe; color: #1e40af; padding: 2px 8px; border-radius: 4px; font-size: 11px; margin-left: 8px;">Owner</span>
