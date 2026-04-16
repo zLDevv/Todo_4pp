@@ -3,7 +3,6 @@
     .calculator {
         max-width: 100%;
         width: 100%;
-        margin: 0 auto;
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
         border-radius: 10px;
         padding: 12px;
@@ -217,8 +216,7 @@
 
     .back-section {
         text-align: left;
-        margin-bottom: 10px;
-        margin-left:50px;
+        margin-bottom: 20px;
         background: rgb(0, 126, 119);
         padding: 10px 16px;
         border-radius: 6px;

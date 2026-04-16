@@ -35,7 +35,12 @@ class TaskController extends Controller
             $query->where('status', 'pending');
         }
 
-        $tasks = $query->paginate(5);
+        $tasks = $query
+            ->orderBy('favorite', 'desc')
+            ->orderByRaw("FIELD(priority, 'high', 'medium', 'low')")
+            ->orderByRaw("FIELD(status, 'pending', 'done')")
+            ->latest()
+            ->paginate(5);
 
         return view('tasks.index', compact('tasks'));
     }
@@ -60,7 +65,13 @@ class TaskController extends Controller
             $query->where('status', 'pending');
         }
 
-        $tasks = $query->get()->groupBy('team_id');
+        $tasks = $query
+        ->orderBy('favorite', 'desc')
+        ->orderByRaw("FIELD(priority, 'high', 'medium', 'low')")
+        ->orderByRaw("FIELD(status, 'pending', 'done')")
+        ->latest()
+        ->get()
+        ->groupBy('team_id');
 
         return view('tasks.team-index', compact('tasks'));
     }

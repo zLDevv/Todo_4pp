@@ -534,7 +534,6 @@ form {
     display: flex;
     flex-direction: column;
     gap: 18px;
-    margin-top: 20px;
 }
 
 form.search-container {
