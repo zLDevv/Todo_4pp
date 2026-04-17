@@ -1192,3 +1192,55 @@ form.search-container {
     display: block;
     padding: 12px 10px;
 }
+
+/* KANBAN BOARD */
+.kanban-container {
+    display: flex;
+    gap: 5px;
+}
+/* COLUMN */
+.kanban-column {
+    min-width: 297px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 14px;
+    padding: 16px;
+    backdrop-filter: blur(10px);
+}
+
+/* TITLE */
+.kanban-title {
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #fff;
+}
+
+/* TASK */
+.kanban-task {
+    background: rgba(255,255,255,0.08);
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    cursor: grab;
+    transition: 0.25s;
+}
+
+.kanban-task:hover {
+    transform: translateY(-3px);
+}
+
+/* SUBTASK */
+.kanban-subtask {
+    font-size: 13px;
+    margin-top: 6px;
+    padding-left: 10px;
+    color: #9ca3af;
+}
+
+.kanban-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+    background-color: #333;
+    color: red;
+}   

@@ -211,4 +211,61 @@ class TaskController extends Controller
         return $pdf->download('tasks.pdf');
     }
 
+    public function kanban(Request $request)
+    {
+        $teamId = $request->team_id;
+
+        $query = Task::where('user_id', Auth::id())
+            ->with('children'); 
+            if ($teamId) {
+                $query->where('team_id', $teamId);
+            }
+
+            $tasks = $query->get()->groupBy('status');
+
+            // ambil semua team user
+            $teams = Auth::user()->teams()->get();
+            return view('tools.kanban', compact('tasks', 'teams', 'teamId'));
+    }
+
+    public function move(Request $request, $id)
+    {
+        $task = Task::where('user_id', Auth::id())->findOrFail($id);
+
+        $task->status = $request->status;
+        $task->save();
+
+        return response()->json(['success' => true]);
+    }
+
+    public function calendar(Request $request)
+    {
+        $teamId = $request->team_id;
+
+        $query = Task::where('user_id', Auth::id());
+
+        if ($teamId) {
+            $query->where('team_id', $teamId);
+        }
+
+        $tasks = $query->get();
+
+        $teams = Auth::user()->teams()->get();
+
+        $events = $tasks->map(function ($t) {
+            return [
+                'title' => $t->title,
+                'start' => $t->deadline,
+                'color' => match ($t->status) {
+                    'pending' => '#f59e0b',
+                    'in_progress' => '#3b82f6',
+                    'done' => '#10b981',
+                    default => '#6b7280'
+                }
+            ];
+        });
+
+        return view('tools.calendar', compact('events', 'teams', 'teamId'));
+    }
+
 }

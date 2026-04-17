@@ -32,6 +32,8 @@
         <a href="/teams" class="btn nav-btn">Teams</a>
         <a href="/inbox" class="btn nav-btn">Inbox</a>
         <a href="/calculator" class="btn nav-btn">Calc</a>
+        <a href="/kanban" class="btn nav-btn">Kanban</a>
+        <a href="/calendar" class="btn nav-btn">Calendar</a>
     </div>
 
     <!-- Search Section -->

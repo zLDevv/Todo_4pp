@@ -65,6 +65,9 @@ Route::middleware('auth')->group(function () {
 
     // TOOLS
     Route::get('/calculator', [ToolController::class, 'calculator']);
+    Route::get('/kanban', [TaskController::class, 'kanban']);
+    Route::post('/tasks/{id}/move', [TaskController::class, 'move']);
+    Route::get('/calendar', [TaskController::class, 'calendar']);
 });
 
 /*
